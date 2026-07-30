@@ -32,16 +32,16 @@ jobs:
         shell: bash
         run: |
           set -euxo pipefail
-          bash whisper.cpp/models/download-ggml-model.sh small-q5_1
+          bash whisper.cpp/models/download-ggml-model.sh base-q5_1
           mkdir -p artifact
           cp whisper.cpp/build/bin/whisper-cli artifact/
-          cp whisper.cpp/models/ggml-small-q5_1.bin artifact/
+          cp whisper.cpp/models/ggml-base-q5_1.bin artifact/
           sha256sum artifact/* > artifact/SHA256SUMS
 
       - name: Upload runtime
         uses: actions/upload-artifact@v4
         with:
-          name: whisper-linux-x64-small-q5_1
+          name: whisper-linux-x64-base-q5_1
           path: artifact
           compression-level: 0
           retention-days: 1
